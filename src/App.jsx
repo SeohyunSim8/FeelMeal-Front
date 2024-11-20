@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import MainLayOut from './layout/MainLayOut';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
-import LevelPage from './pages/LevelPage';
+import MenuCategoryPage from './pages/MenuCategoryPage';
 import LevelInfoPage from './pages/LevelInfoPage';
 import BoardPage from './pages/BoardPage';
 import BoardMorePage from './pages/BoardMorePage';
@@ -25,7 +25,7 @@ function App() {
         <Route path="/signup" element={<LoginPage/>} />
 
         {/* 숙련도 페이지 */}
-        <Route path="/level" element={<LevelPage/>} />
+        <Route path="/menuCategory" element={<MenuCategoryPage/>} />
         <Route path='/levelInfo' element={<LevelInfoPage/>} />
 
         {/* 게시판 페이지 */}
