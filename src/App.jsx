@@ -5,8 +5,6 @@ import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
 import LevelPage from './pages/LevelPage';
 import LevelInfoPage from './pages/LevelInfoPage';
-import GenrePage from './pages/GenrePage';
-import GenreInfoPage from './pages/GenreInfoPage';
 import BoardPage from './pages/BoardPage';
 import BoardMorePage from './pages/BoardMorePage';
 import BoardWritePage from './pages/BoardWritePage';
@@ -29,10 +27,6 @@ function App() {
         {/* 숙련도 페이지 */}
         <Route path="/level" element={<LevelPage/>} />
         <Route path='/levelInfo' element={<LevelInfoPage/>} />
-
-        {/* 장르 페이지 */}
-        <Route path="/genre" element={<GenrePage/>} />
-        <Route path="/genreInfo" element={<GenreInfoPage/>} />
 
         {/* 게시판 페이지 */}
         <Route path="/board" element={<BoardPage/>} />
