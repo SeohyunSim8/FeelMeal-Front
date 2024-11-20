@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import Korean from '../assets/images/levelPage/korean.png';
-import Japanese from '../assets/images/levelPage/japanese.png';
-import Chinese from '../assets/images/levelPage/chinese.png';
-import American from '../assets/images/levelPage/american.png';
-import CardBack1 from '../assets/images/levelPage/cardback1.png';
-import CardBack2 from '../assets/images/levelPage/cardback2.png';
-import CardBack3 from '../assets/images/levelPage/cardback3.png';
-import Table from '../assets/images/levelPage/table.png';
+import Korean from '../assets/images/menuCategoryPage/korean.png';
+import Japanese from '../assets/images/menuCategoryPage/japanese.png';
+import Chinese from '../assets/images/menuCategoryPage/chinese.png';
+import American from '../assets/images/menuCategoryPage/american.png';
+import CardBack1 from '../assets/images/menuCategoryPage/cardback1.png';
+import CardBack2 from '../assets/images/menuCategoryPage/cardback2.png';
+import CardBack3 from '../assets/images/menuCategoryPage/cardback3.png';
+import Table from '../assets/images/menuCategoryPage/table.png';
 
 export default function MenuCategoryPage() {
   const navigate = useNavigate();

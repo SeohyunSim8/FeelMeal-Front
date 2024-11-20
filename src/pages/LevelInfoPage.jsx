@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import JokerHead from '../assets/images/levelPage/jokerhead.png';
 import { useLocation } from 'react-router-dom';
 import { getProficiencyListAPI } from '../apis/theme/getProficiencyListAPI'; // api 파일
 
@@ -119,9 +118,6 @@ export default function LevelInfoPage() {
     <Wrapper>
       <Container>
         <LevelInfoBox>
-          <LevelIconWrapper>
-            <LevelIcon src={JokerHead} alt='레벨아이콘' />
-          </LevelIconWrapper>
           <Level>{profName}</Level>
           <LevelDetail>
             {profDescription}
