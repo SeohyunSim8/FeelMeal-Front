@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import LogoIcon from "../../assets/icons/common/logo.svg?react";
+import LogoImage from "../../assets/images/common/logo.png";
 
 function Header() {
     // state 관리
@@ -46,12 +46,11 @@ function Header() {
     return (
         <>
         <HeaderWrapper>
-            <StyledLogoIcon onClick={() => handleNavigation("/")}/>
+            <StyledLogoImage src={LogoImage} alt="Logo" onClick={() => handleNavigation("/")}/>
             <ButtonWrapper>
                 <StyledButton onClick={() => handleNavigation("/")}>홈</StyledButton>
-                <StyledButton onClick={() => handleNavigation("/board")}>게시판</StyledButton>
+                <StyledButton onClick={() => handleNavigation("/menuCategory")}>메뉴 추천</StyledButton>
                 <StyledButton onClick={() => handleNavigation("/mypage")}>마이페이지</StyledButton>
-                <StyledButton onClick={() => handleNavigation("/login")}>로그인</StyledButton>
             </ButtonWrapper>
         </HeaderWrapper>
         </>
@@ -76,7 +75,7 @@ const HeaderWrapper = styled.div`
     box-sizing: border-box;
 `;
 
-const StyledLogoIcon = styled(LogoIcon)`
+const StyledLogoImage = styled.img`
     height: 4.5em;
     cursor: pointer;
 `;
