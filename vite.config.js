@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
         '/api': {
-            target: 'https://roominus-server.store',
+            target: 'http://localhost:8090',
             changeOrigin: true,
             secure: false,
         },
