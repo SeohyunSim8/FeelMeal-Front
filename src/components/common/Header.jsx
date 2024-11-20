@@ -1,9 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import useDevice from "../../hooks/useDevice";
-import MenuIcon from "../../assets/icons/common/menuIcon.svg?react";
-import CancelIcon from "../../assets/icons/common/cancelIcon.svg?react";
 import LogoIcon from "../../assets/icons/common/logo.svg?react";
 
 function Header() {
@@ -19,20 +16,10 @@ function Header() {
         setIsVisibleMenu(false);
     };
 
-    // 반응형 함수
-    const { isDesktop, isTablet, isMobile } = useDevice();
-
     // 메뉴 열고 닫기
     const handleMenu = () => {
         setIsVisibleMenu(!isVisibleMenu);
     }
-    
-    // 화면 크기가 변경 시 메뉴를 닫기
-    useEffect(() => {
-        if (!isMobile) {
-            setIsVisibleMenu(false);
-        }
-    }, [isMobile, isTablet, isDesktop]);;
     
     // 메뉴바 참조를 위한 ref
     const menuRef = useRef(null);
@@ -59,49 +46,14 @@ function Header() {
     return (
         <>
         <HeaderWrapper>
-            { isDesktop &&
-                <>
-                    <StyledLogoIcon onClick={() => handleNavigation("/")}/>
-                    <ButtonWrapper>
-                        <StyledButton onClick={() => handleNavigation("/")}>홈</StyledButton>
-                        <StyledButton onClick={() => handleNavigation("/board")}>게시판</StyledButton>
-                        <StyledButton onClick={() => handleNavigation("/mypage")}>마이페이지</StyledButton>
-                        <StyledButton onClick={() => handleNavigation("/login")}>로그인</StyledButton>
-                    </ButtonWrapper>
-                </>
-            }
-            { isTablet &&
-                <>
-                    <StyledLogoIcon onClick={() => handleNavigation("/")}/>
-                    <ButtonWrapper>
-                        <StyledButton onClick={() => handleNavigation("/")}>홈</StyledButton>
-                        <StyledButton onClick={() => handleNavigation("/board")}>게시판</StyledButton>
-                        <StyledButton onClick={() => handleNavigation("/mypage")}>마이페이지</StyledButton>
-                        <StyledButton onClick={() => handleNavigation("/login")}>로그인</StyledButton>
-                    </ButtonWrapper>
-                </>
-            }
-            { isMobile &&
-                <>
-                    <StyledLogoIcon onClick={() => handleNavigation("/")}/>
-                    <StyledMenuIcon onClick={() => handleMenu()}/>
-                </>
-            }
-            
+            <StyledLogoIcon onClick={() => handleNavigation("/")}/>
+            <ButtonWrapper>
+                <StyledButton onClick={() => handleNavigation("/")}>홈</StyledButton>
+                <StyledButton onClick={() => handleNavigation("/board")}>게시판</StyledButton>
+                <StyledButton onClick={() => handleNavigation("/mypage")}>마이페이지</StyledButton>
+                <StyledButton onClick={() => handleNavigation("/login")}>로그인</StyledButton>
+            </ButtonWrapper>
         </HeaderWrapper>
-        
-        { isMobile &&
-            // 메뉴바
-            <MenuWrapper isVisible={isVisibleMenu} ref={menuRef}>
-                <StyledCancelIcon onClick={() => handleMenu()}/>
-                <MobileButtonWrapper>
-                    <MobileButton onClick={() => handleNavigation("/")}>홈</MobileButton>
-                    <MobileButton onClick={() => handleNavigation("/board")}>게시판</MobileButton>
-                    <MobileButton onClick={() => handleNavigation("/mypage")}>마이페이지</MobileButton>
-                    <MobileButton onClick={() => handleNavigation("/login")}>로그인</MobileButton>
-                </MobileButtonWrapper>
-            </MenuWrapper>
-        }
         </>
     )
 }
@@ -122,25 +74,11 @@ const HeaderWrapper = styled.div`
     backdrop-filter: blur(15px);
     z-index: 2000;
     box-sizing: border-box;
-    
-    @media (max-width: 1024px) {  // 태블릿
-        padding-left: 2.5em;
-    }
-    @media (max-width: 768px) {  // 모바일
-        padding-left: 1em;
-    }
 `;
 
 const StyledLogoIcon = styled(LogoIcon)`
     height: 4.5em;
     cursor: pointer;
-
-    @media (max-width: 1024px) {  // 태블릿
-        height: 3.8em;
-    }
-    @media (max-width: 768px) {  // 모바일
-        height: 3em;
-    }
 `;
 
 const ButtonWrapper = styled.div`
@@ -156,57 +94,4 @@ const StyledButton = styled.div`
     font-size: 1.2em;
     font-weight: 600;
     cursor: pointer;
-
-     @media (max-width: 1024px) {  // 태블릿
-        font-size: 1em;
-    }
-`;
-
-// 모바일 반응형
-const StyledMenuIcon = styled(MenuIcon)`
-    width: 2em;
-    height: 2em;
-    cursor: pointer;
-`;
-
-const MenuWrapper = styled.div`
-    width: 15em;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(26,26,26,0.7);
-    backdrop-filter: blur(15px);
-    transform: ${({ isVisible }) => (isVisible ? 'translateX(0)' : 'translateX(100%)')};
-    transition: transform 0.3s ease;
-    z-index: 3000;
-`;
-
-const StyledCancelIcon = styled(CancelIcon)`
-    margin: 2.5em 1em 1em 1em;
-    width: 2.3em;
-    height: 2.3em;
-    cursor: pointer;
-`;
-
-const MobileButtonWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
-const MobileButton = styled.div`
-    margin-left: 3em;
-    margin-bottom: 1.5em;
-    color: white;
-    font-family: 'Pretendard-SemiBold';
-    font-size: 1.2em;
-    font-weight: 600;
-    cursor: pointer;
-    &:hover {
-        transform: translateX(5px);
-        }
-    transition: all 0.3s ease;
 `;
