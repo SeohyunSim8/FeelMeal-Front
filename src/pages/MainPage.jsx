@@ -14,7 +14,7 @@ function MainPage() {
                 <TitleText>가천대생을 위한 감정 기반 메뉴 추천 시스템<br />FeelMeal에 어서 오세요</TitleText>
             </TitleBoxWrapper>
             <MenuBoxWrapper>
-                <MenuBox onClick={() => navigate("/menus")}>
+                <MenuBox onClick={() => navigate("/menuCategory")}>
                     <MenuIcon src={MenuRecommendMenu} />
                     <MenuText>메뉴 추천</MenuText>
                 </MenuBox>

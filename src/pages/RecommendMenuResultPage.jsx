@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import MenuRecommendMenu from '../assets/images/mainPage/menuRecommend.png'
-import MyPageMenu from '../assets/images/mainPage/myPage.png'
 import { useNavigate } from 'react-router-dom'
-import HappyEmotion from '../assets/images/restaurantInfoPage/happy.png'
-import SadEmotion from '../assets/images/restaurantInfoPage/sad.png'
-import AngryEmotion from '../assets/images/restaurantInfoPage/angry.png'
-import BoredEmotion from '../assets/images/restaurantInfoPage/bored.png'
 
 function RecommendMenuPage() {
     return (

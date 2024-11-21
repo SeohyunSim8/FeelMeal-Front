@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
-import HappyEmotion from '../assets/images/restaurantInfoPage/happy.png'
-import SadEmotion from '../assets/images/restaurantInfoPage/sad.png'
-import AngryEmotion from '../assets/images/restaurantInfoPage/angry.png'
-import BoredEmotion from '../assets/images/restaurantInfoPage/bored.png'
+import HappyEmotion from '../assets/images/recommendMenuPage/happy.png'
+import SadEmotion from '../assets/images/recommendMenuPage/sad.png'
+import AngryEmotion from '../assets/images/recommendMenuPage/angry.png'
+import NervousEmotion from '../assets/images/recommendMenuPage/nervous.png'
 import RecommendMenuResultPage from './RecommendMenuResultPage';
 
 function RecommendMenuPage() {
@@ -37,8 +37,8 @@ function RecommendMenuPage() {
                   <MenuText>화남</MenuText>
               </MenuBox>
               <MenuBox onClick={() => setShowModal(true)}>
-                  <MenuIcon src={BoredEmotion} />
-                  <MenuText>따분함</MenuText>
+                  <MenuIcon src={NervousEmotion} />
+                  <MenuText>긴장</MenuText>
               </MenuBox>
             </MenuBoxWrapper>
             
@@ -78,7 +78,7 @@ const TitleText = styled.div`
     font-size: 2.7em;
     text-shadow: 0em 0.25em 0.25em rgba(0, 0, 0, 0.25);
     text-align: center;
-    margin-top: 1.5em;
+    margin-top: 1em;
 `;
 
 const MenuBoxWrapper = styled.div`
@@ -88,6 +88,7 @@ const MenuBoxWrapper = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    margin-bottom: 1.5em;
 `;
 
 const MenuBox = styled.div`
@@ -123,7 +124,8 @@ const ModalBackground = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 5em;
   z-index: 999;
 `;
 
@@ -131,7 +133,8 @@ const ModalContent = styled.div`
   background: #212121;
   margin-top: 10%;
   width: 50%;
-  height: 40%;
+  max-height: 80vh; /* 최대 높이를 화면의 80%로 제한 */
+  height: 35%;
   border-radius: 1em;
   overflow: hidden;
   position: relative;
@@ -140,7 +143,7 @@ const ModalContent = styled.div`
 
 const ModalCloseButton = styled.div`
   position: absolute;
-  top: 1em;
+  top: 0.5em;
   right: 1em;
   font-size: 3em;
   font-family: 'esamanru-Bold';

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import BackgroundImg from "../assets/images/loginPage/background2.png";
+import BackgroundImg from "../assets/images/loginPage/background.png";
 
 function LoginPage() {
     // navigate

@@ -261,14 +261,16 @@ const ModalBackground = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 5em;
   z-index: 999;
 `;
 
 const ModalContent = styled.div`
   background: #212121;
   width: 80%;
-  height: 80%;
+  max-height: 80vh; /* 최대 높이를 화면의 80%로 제한 */
+  height: auto; /* 내용에 맞게 자동으로 높이 조정 */
   border-radius: 1em;
   overflow: hidden;
   position: relative;

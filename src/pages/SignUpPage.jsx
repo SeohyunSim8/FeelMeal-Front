@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import BackgroundImg from "../assets/images/loginPage/background2.png";
+import BackgroundImg from "../assets/images/loginPage/background.png";
 
 function SignUpPage() {
     // navigate
@@ -12,7 +12,7 @@ function SignUpPage() {
             <ContentWrapper>
                 {/* 좌측 영역 */}
                 <LeftWrapper>
-                    로그인
+                    회원가입
                 </LeftWrapper>
                 
                 {/* 우측 영역 */}

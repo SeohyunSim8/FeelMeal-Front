@@ -120,9 +120,9 @@ export default function RestaurantPage() {
     <Wrapper>
       <Container>
         {/* 식당 목록 조회 */}
-        <LikeListWrapper>
-          <LikeList>
-            <LikeHeader>식당 목록 (내 위치에서 가까운 순)</LikeHeader>
+        <RestaurantListWrapper>
+          <RestaurantList>
+            <RestaurantHeader>식당 목록 (내 위치에서 가까운 순)</RestaurantHeader>
             <TableHeaderWrapper>
               <TableHeader1>식당 이름</TableHeader1>
               <TableHeader2>주소</TableHeader2>
@@ -142,8 +142,8 @@ export default function RestaurantPage() {
                 ))}
               </tbody>
             </Table>
-          </LikeList>
-        </LikeListWrapper>
+          </RestaurantList>
+        </RestaurantListWrapper>
       </Container>
     </Wrapper>
   )
@@ -171,7 +171,7 @@ const Container = styled.div`
   margin: 1.5em;
 `;
 
-const LikeListWrapper = styled.div`
+const RestaurantListWrapper = styled.div`
   width: 100%;
   height: auto;
   display: flex;
@@ -179,7 +179,7 @@ const LikeListWrapper = styled.div`
   align-items: center;
 `;
 
-const LikeList = styled.div`
+const RestaurantList = styled.div`
   width: 100%;
   height: 28em;
   background-color: #787878;
@@ -197,11 +197,11 @@ const LikeList = styled.div`
   }
 `;
 
-const LikeHeader = styled.div`
-    margin-top: 1em;
+const RestaurantHeader = styled.div`
+    margin-top: 0.7em;
     color: #fff;
     font-family: 'Pretendard-Medium';
-    font-size: 1.3em;
+    font-size: 1.5em;
     text-align: center;
     border-radius: 0.9615em;
     width: auto;

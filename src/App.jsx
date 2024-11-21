@@ -36,7 +36,6 @@ function App() {
         <Route path='/recommendMenu' element={<RecommendMenuPage/>} />
         <Route path='/recommendMenuResult' element={<RecommendMenuResultPage/>} />
 
-
       </Route>
     </Routes>
   )
