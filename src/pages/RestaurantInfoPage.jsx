@@ -84,6 +84,7 @@ export default function RestaurantInfoPage() {
       {showModal && (
         <ModalBackground onClick={() => setShowModal(false)}> {/* 모달 닫기 */}
           <ModalContent onClick={(e) => e.stopPropagation()}> {/* 클릭 이벤트 전파 방지 */}
+            <ModalCloseButton onClick={() => setShowModal(false)}>×</ModalCloseButton>
             <RecommendMenuPage /> {/* RecommendMenuPage 컴포넌트 */}
           </ModalContent>
         </ModalBackground>
@@ -272,4 +273,18 @@ const ModalContent = styled.div`
   overflow: hidden;
   position: relative;
   z-index: 1000;
+`;
+
+const ModalCloseButton = styled.div`
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  font-size: 3em;
+  font-family: 'esamanru-Bold';
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;

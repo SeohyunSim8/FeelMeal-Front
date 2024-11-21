@@ -12,7 +12,7 @@ function RecommendMenuPage() {
     return (
         <Wrapper>
             <ContentBoxWrapper>
-                <ContentText>을 추천할게요</ContentText>
+                <ContentText>불닭짜장면덮밥 곱배기을(를) 추천합니다</ContentText>
             </ContentBoxWrapper>
         </Wrapper>
     )
@@ -30,7 +30,6 @@ const Wrapper = styled.div`
 `;
 
 const ContentBoxWrapper = styled.div`
-    margin-top: 5em;
     display: flex;
     align-items: center;
     justify-content: center;

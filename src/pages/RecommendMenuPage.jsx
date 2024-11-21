@@ -5,10 +5,13 @@ import HappyEmotion from '../assets/images/restaurantInfoPage/happy.png'
 import SadEmotion from '../assets/images/restaurantInfoPage/sad.png'
 import AngryEmotion from '../assets/images/restaurantInfoPage/angry.png'
 import BoredEmotion from '../assets/images/restaurantInfoPage/bored.png'
+import RecommendMenuResultPage from './RecommendMenuResultPage';
 
 function RecommendMenuPage() {
     // navigate
     const navigate = useNavigate();
+
+    const [showModal, setShowModal] = useState(false); // 모달 상태 관리
 
     const handleEmotionInfo = (emotionInfo) => {
       navigate('/recommendMenuResult', {state: emotionInfo});
@@ -21,31 +24,33 @@ function RecommendMenuPage() {
             </TitleBoxWrapper>
           {/* todo */}
             <MenuBoxWrapper>
-              <MenuBox onClick={() => handleEmotionInfo({
-                        emotion: 'HAPPY'
-                      })}>
+              <MenuBox onClick={() => setShowModal(true)}>
                   <MenuIcon src={HappyEmotion} />
                   <MenuText>기쁨</MenuText>
               </MenuBox>
-              <MenuBox onClick={() => handleEmotionInfo({
-                        emotion: 'SAD'
-                      })}>
+              <MenuBox onClick={() => setShowModal(true)}>
                   <MenuIcon src={SadEmotion} />
                   <MenuText>슬픔</MenuText>
               </MenuBox>
-              <MenuBox onClick={() => handleEmotionInfo({
-                        emotion: 'ANGRY'
-                      })}>
+              <MenuBox onClick={() => setShowModal(true)}>
                   <MenuIcon src={AngryEmotion} />
                   <MenuText>화남</MenuText>
               </MenuBox>
-              <MenuBox onClick={() => handleEmotionInfo({
-                        emotion: 'BORED'
-                      })}>
+              <MenuBox onClick={() => setShowModal(true)}>
                   <MenuIcon src={BoredEmotion} />
                   <MenuText>따분함</MenuText>
               </MenuBox>
             </MenuBoxWrapper>
+            
+            {/* 모달 */}
+            {showModal && (
+                <ModalBackground onClick={() => setShowModal(false)}> {/* 모달 닫기 */}
+                <ModalContent onClick={(e) => e.stopPropagation()}> {/* 클릭 이벤트 전파 방지 */}
+                    <ModalCloseButton onClick={() => setShowModal(false)}>×</ModalCloseButton>
+                    <RecommendMenuResultPage /> {/* RecommendMenuPage 컴포넌트 */}
+                </ModalContent>
+                </ModalBackground>
+            )}
         </Wrapper>
     )
 }
@@ -86,8 +91,8 @@ const MenuBoxWrapper = styled.div`
 `;
 
 const MenuBox = styled.div`
-    width: 18em;
-    height: 22em;
+    width: 15em;
+    height: 20em;
     background: linear-gradient(to bottom, #FFB0A5 30%, #251E1E 85%);
     display: flex;
     flex-direction: column;
@@ -109,4 +114,40 @@ const MenuText = styled.div`
     font-family: 'esamanru-Bold';
     color: #fff;
     font-size: 2.2em;
+`;
+
+const ModalBackground = styled.div`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+`;
+
+const ModalContent = styled.div`
+  background: #212121;
+  margin-top: 10%;
+  width: 50%;
+  height: 40%;
+  border-radius: 1em;
+  overflow: hidden;
+  position: relative;
+  z-index: 1000;
+`;
+
+const ModalCloseButton = styled.div`
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  font-size: 3em;
+  font-family: 'esamanru-Bold';
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
