@@ -8,6 +8,8 @@ import MypagePage from './pages/MypagePage';
 import MenuCategoryPage from './pages/MenuCategoryPage';
 import RestaurantPage from './pages/RestaurantPage';
 import RestaurantInfoPage from './pages/RestaurantInfoPage';
+import RecommendMenuPage from './pages/RecommendMenuPage';
+import RecommendMenuResultPage from './pages/RecommendMenuResultPage';
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
         <Route path="/menuCategory" element={<MenuCategoryPage/>} />
         <Route path='/restaurants' element={<RestaurantPage/>} />
         <Route path='/menus' element={<RestaurantInfoPage/>} />
+        <Route path='/recommendMenu' element={<RecommendMenuPage/>} />
+        <Route path='/recommendMenuResult' element={<RecommendMenuResultPage/>} />
 
 
       </Route>

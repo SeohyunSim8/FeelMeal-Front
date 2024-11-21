@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { useLocation,useNavigate } from 'react-router-dom';
 import { getProficiencyListAPI } from '../apis/theme/getProficiencyListAPI'; // api 파일
+import RecommendMenuPage from './RecommendMenuPage';
 
-export default function MypagePage() {
+export default function RestaurantInfoPage() {
 //todo
   // state 관리
   const [profName, setProfName] = useState([]);
@@ -11,9 +12,13 @@ export default function MypagePage() {
   const [cafeLists, setCafeLists] = useState([]);
   const [page,] = useState('1');
 
+  const [showModal, setShowModal] = useState(false); // 모달 상태 관리
+
   // useLocation
   const location = useLocation();
   const {level} = location.state || {};
+  
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchStudies = async () => {
@@ -52,7 +57,9 @@ export default function MypagePage() {
         {/* 메뉴 */}
         <MenuListWrapper>
           <MenuList>
-            <RecommendButton>지금 감정에 먹기 좋은 메뉴 추천받기</RecommendButton>
+            <RecommendButton onClick={() => setShowModal(true)}>
+              지금 감정에 먹기 좋은 메뉴 추천받기
+            </RecommendButton>
             <TableHeaderWrapper>
               <TableHeader1>메뉴</TableHeader1>
             </TableHeaderWrapper>
@@ -72,6 +79,15 @@ export default function MypagePage() {
           </MenuList>
         </MenuListWrapper>
       </Container>
+
+      {/* 모달 */}
+      {showModal && (
+        <ModalBackground onClick={() => setShowModal(false)}> {/* 모달 닫기 */}
+          <ModalContent onClick={(e) => e.stopPropagation()}> {/* 클릭 이벤트 전파 방지 */}
+            <RecommendMenuPage /> {/* RecommendMenuPage 컴포넌트 */}
+          </ModalContent>
+        </ModalBackground>
+      )}
     </Wrapper>
   )
 }
@@ -235,4 +251,25 @@ const TableData = styled.td`
   text-align: center;
   border-bottom: 1px solid #fff;
   height: 2.375em;
+`;
+
+const ModalBackground = styled.div`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+`;
+
+const ModalContent = styled.div`
+  background: #212121;
+  width: 80%;
+  height: 80%;
+  border-radius: 1em;
+  overflow: hidden;
+  position: relative;
+  z-index: 1000;
 `;
