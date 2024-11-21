@@ -14,8 +14,8 @@ export default function MenuCategoryPage() {
   const navigate = useNavigate();
 
   //Todo
-  const handleMenuCategory = (levelInfo) => {
-    navigate('/levelInfo', {state: levelInfo});
+  const handleMenuCategory = (category) => {
+    navigate('/restaurants', {state: category});
   };
 
   return (

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { useLocation } from 'react-router-dom';
 import { getProficiencyListAPI } from '../apis/theme/getProficiencyListAPI'; // api 파일
 
-export default function MypagePage() {
+export default function RestaurantPage() {
 //todo
   // state 관리
   const [profName, setProfName] = useState([]);
@@ -15,6 +15,91 @@ export default function MypagePage() {
   const location = useLocation();
   const {level} = location.state || {};
 
+  
+  // const roomData = [
+  //   {
+  //     id: 1,
+  //     region: '서울',
+  //     detailRegion: '강남',
+  //     shopName: '미스터리룸 이스케이프',
+  //     themeName: '인형괴담',
+  //   },
+  //   {
+  //     id: 2,
+  //     region: '서울',
+  //     detailRegion: '강남',
+  //     shopName: '미스터리룸 이스케이프',
+  //     themeName: '인형괴담',
+  //   },
+  //   {
+  //     id: 3,
+  //     region: '서울',
+  //     detailRegion: '강남',
+  //     shopName: '미스터리룸 이스케이프',
+  //     themeName: '인형괴담',
+  //   },
+  //   {
+  //     id: 4,
+  //     region: '서울',
+  //     detailRegion: '강남',
+  //     shopName: '미스터리룸 이스케이프',
+  //     themeName: '인형괴담',
+  //   },
+  //   {
+  //     id: 5,
+  //     region: '서울',
+  //     detailRegion: '강남',
+  //     shopName: '미스터리룸 이스케이프',
+  //     themeName: '인형괴담',
+  //   },
+  //   {
+  //     id: 6,
+  //     region: '서울',
+  //     detailRegion: '강남',
+  //     shopName: '미스터리룸 이스케이프',
+  //     themeName: '인형괴담',
+  //   },
+  //   {
+  //     id: 7,
+  //     region: '서울',
+  //     detailRegion: '강남',
+  //     shopName: '미스터리룸 이스케이프',
+  //     themeName: '인형괴담',
+  //   },
+  //   {
+  //     id: 8,
+  //     region: '서울',
+  //     detailRegion: '강남',
+  //     shopName: '미스터리룸 이스케이프',
+  //     themeName: '인형괴담',
+  //   },
+  //   {
+  //     id: 9,
+  //     region: '서울',
+  //     detailRegion: '강남',
+  //     shopName: '미스터리룸 이스케이프',
+  //     themeName: '인형괴담',
+  //   },
+  //   {
+  //     id: 10,
+  //     region: '서울',
+  //     detailRegion: '강남',
+  //     shopName: '미스터리룸 이스케이프',
+  //     themeName: '인형괴담',
+  //   },
+  //   {
+  //     id: 11,
+  //     region: '서울',
+  //     detailRegion: '강남',
+  //     shopName: '미스터리룸 이스케이프',
+  //     themeName: '인형괴담',
+  //   },
+  // ];
+
+  // 임시 
+  // const page = '1';
+
+  // 방탈출 정보 불러오기
   useEffect(() => {
     const fetchStudies = async () => {
         try {
@@ -34,28 +119,15 @@ export default function MypagePage() {
   return (
     <Wrapper>
       <Container>
-        {/* 주소 수정 */}
-        <AddressWrapper>
-            <Address>
-                <AddressHeader>내 위치 수정하기</AddressHeader>
-                <AddressContent>
-                    <AddressText>내 위치 (복정동, 태평동을 포함한 지번주소)</AddressText>
-                    <StyledAddress />
-                </AddressContent>
-                {/* todo */}
-                <AddressButton onClick={() => navigate("/mypage")}> 
-                    수정
-                </AddressButton>
-            </Address>
-        </AddressWrapper>
-        {/* 좋아요 한 식당 목록 조회 */}
+        {/* 식당 목록 조회 */}
         <LikeListWrapper>
           <LikeList>
-            <LikeHeader>좋아요 한 식당 목록</LikeHeader>
+            <LikeHeader>식당 목록 (내 위치에서 가까운 순)</LikeHeader>
             <TableHeaderWrapper>
               <TableHeader1>식당 이름</TableHeader1>
               <TableHeader2>주소</TableHeader2>
               <TableHeader3>좋아요 취소</TableHeader3>
+              <TableHeader4>메뉴 보기</TableHeader4>
             </TableHeaderWrapper>
             <Table>
               <tbody>
@@ -97,93 +169,6 @@ const Container = styled.div`
   gap: 2em;
   padding: 3em;
   margin: 1.5em;
-`;
-
-const AddressWrapper = styled.div`
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
-
-const Address = styled.div`
-  background-color: #787878;
-  border-radius: 0.9375em;
-  padding: 0.5em;
-  overflow-y: auto;
-  display: flex;
-  align-items: center;
-  gap: 1em;
-  width: 100%;
-  &::-webkit-scrollbar {
-    width: 8px;
-    height: 8x;
-    background: none;
-  }
-  &:hover::-webkit-scrollbar-thumb {
-      border-radius: 30px;
-      background-color: darkgray;
-  }
-`;
-
-const AddressHeader = styled.div`
-    color: #fff;
-    font-family: 'Pretendard-Medium';
-    font-size: 1.3em;
-    text-align: center;
-    border-radius: 0.9615em;
-    width: auto;
-    margin-left: 1.5em;
-`;
-
-const AddressContent = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex: 1;
-    gap: 0.1em;
-    padding: 0.5em;
-`;
-
-const AddressText = styled.div`
-    color: #fff;
-    font-family: 'Pretendard-Medium';
-    font-size: 1.2em;
-    font-weight: 500;
-    padding: 0.5em;
-`;
-
-const StyledAddress = styled.input`
-    padding: 0 1em;
-    box-sizing: border-box;
-    margin: 0.5em 0;
-    border: none;
-    border-radius: 0.6em;
-    width: 100%;
-    height: 3.2em;
-    background-color: #322F35;
-    color: #FBE8E9;
-    outline: none;
-`;
-
-const AddressButton = styled.div`
-    margin-right: 1em;
-    border: none;
-    border-radius: 0.5em;
-    width: 4em;
-    height: 2.5em;
-    line-height: 2.5em;
-    text-align: center;
-    background-color: #940000;
-    color: white;
-    font-family: 'Pretendard-Medium';
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    &:hover{
-        filter: brightness(80%);
-    }
 `;
 
 const LikeListWrapper = styled.div`
@@ -259,7 +244,7 @@ const TableHeader2 = styled.div`
   font-size: 1.3em;
   text-align: center;
   border-radius: 0.9615em;
-  width: 50%;
+  width: 42%;
 `;
 
 const TableHeader3 = styled.div`
@@ -270,7 +255,18 @@ const TableHeader3 = styled.div`
   font-size: 1.3em;
   text-align: center;
   border-radius: 0.9615em;
-  width: 15%;
+  width: 13%;
+`;
+
+const TableHeader4 = styled.div`
+  padding: 0.6em;
+  background-color: rgba(56, 50, 50, 0.7);
+  color: #fff;
+  font-family: 'Pretendard-Medium';
+  font-size: 1.3em;
+  text-align: center;
+  border-radius: 0.9615em;
+  width: 10%;
 `;
 
 const TableData = styled.td`

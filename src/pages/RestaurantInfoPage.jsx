@@ -34,28 +34,27 @@ export default function MypagePage() {
   return (
     <Wrapper>
       <Container>
-        {/* 주소 수정 */}
-        <AddressWrapper>
-            <Address>
-                <AddressHeader>내 위치 수정하기</AddressHeader>
-                <AddressContent>
-                    <AddressText>내 위치 (복정동, 태평동을 포함한 지번주소)</AddressText>
-                    <StyledAddress />
-                </AddressContent>
-                {/* todo */}
-                <AddressButton onClick={() => navigate("/mypage")}> 
-                    수정
-                </AddressButton>
-            </Address>
-        </AddressWrapper>
-        {/* 좋아요 한 식당 목록 조회 */}
-        <LikeListWrapper>
-          <LikeList>
-            <LikeHeader>좋아요 한 식당 목록</LikeHeader>
+        {/* 식당 정보 */}
+        <InfoWrapper>
+            <Info>
+              {/* todo */}
+                <InfoContent>
+                    <InfoText>내 위치내 위치내 위치</InfoText>
+                </InfoContent>
+                <InfoContent>
+                    <InfoText>내 위치내 위치내 위치</InfoText>
+                </InfoContent>
+                <InfoContent>
+                    <InfoText>내 위치</InfoText>
+                </InfoContent>
+            </Info>
+        </InfoWrapper>
+        {/* 메뉴 */}
+        <MenuListWrapper>
+          <MenuList>
+            <RecommendButton>지금 감정에 먹기 좋은 메뉴 추천받기</RecommendButton>
             <TableHeaderWrapper>
-              <TableHeader1>식당 이름</TableHeader1>
-              <TableHeader2>주소</TableHeader2>
-              <TableHeader3>좋아요 취소</TableHeader3>
+              <TableHeader1>메뉴</TableHeader1>
             </TableHeaderWrapper>
             <Table>
               <tbody>
@@ -70,8 +69,8 @@ export default function MypagePage() {
                 ))}
               </tbody>
             </Table>
-          </LikeList>
-        </LikeListWrapper>
+          </MenuList>
+        </MenuListWrapper>
       </Container>
     </Wrapper>
   )
@@ -99,7 +98,7 @@ const Container = styled.div`
   margin: 1.5em;
 `;
 
-const AddressWrapper = styled.div`
+const InfoWrapper = styled.div`
     width: 100%;
     height: auto;
     display: flex;
@@ -107,7 +106,7 @@ const AddressWrapper = styled.div`
     align-items: center;
 `;
 
-const Address = styled.div`
+const Info = styled.div`
   background-color: #787878;
   border-radius: 0.9375em;
   padding: 0.5em;
@@ -127,7 +126,7 @@ const Address = styled.div`
   }
 `;
 
-const AddressHeader = styled.div`
+const InfoHeader = styled.div`
     color: #fff;
     font-family: 'Pretendard-Medium';
     font-size: 1.3em;
@@ -137,7 +136,7 @@ const AddressHeader = styled.div`
     margin-left: 1.5em;
 `;
 
-const AddressContent = styled.div`
+const InfoContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -146,7 +145,7 @@ const AddressContent = styled.div`
     padding: 0.5em;
 `;
 
-const AddressText = styled.div`
+const InfoText = styled.div`
     color: #fff;
     font-family: 'Pretendard-Medium';
     font-size: 1.2em;
@@ -154,31 +153,18 @@ const AddressText = styled.div`
     padding: 0.5em;
 `;
 
-const StyledAddress = styled.input`
-    padding: 0 1em;
-    box-sizing: border-box;
-    margin: 0.5em 0;
-    border: none;
-    border-radius: 0.6em;
-    width: 100%;
-    height: 3.2em;
-    background-color: #322F35;
-    color: #FBE8E9;
-    outline: none;
-`;
-
-const AddressButton = styled.div`
+const RecommendButton = styled.div`
     margin-right: 1em;
     border: none;
     border-radius: 0.5em;
-    width: 4em;
+    width: 100%;
     height: 2.5em;
     line-height: 2.5em;
     text-align: center;
     background-color: #940000;
     color: white;
     font-family: 'Pretendard-Medium';
-    font-size: 1.2em;
+    font-size: 1.3em;
     cursor: pointer;
     transition: all 0.3s ease;
     &:hover{
@@ -186,7 +172,7 @@ const AddressButton = styled.div`
     }
 `;
 
-const LikeListWrapper = styled.div`
+const MenuListWrapper = styled.div`
   width: 100%;
   height: auto;
   display: flex;
@@ -194,7 +180,7 @@ const LikeListWrapper = styled.div`
   align-items: center;
 `;
 
-const LikeList = styled.div`
+const MenuList = styled.div`
   width: 100%;
   height: 28em;
   background-color: #787878;
@@ -212,17 +198,6 @@ const LikeList = styled.div`
   }
 `;
 
-const LikeHeader = styled.div`
-    margin-top: 1em;
-    color: #fff;
-    font-family: 'Pretendard-Medium';
-    font-size: 1.3em;
-    text-align: center;
-    border-radius: 0.9615em;
-    width: auto;
-    margin-left: 1.5em;
-`;
-
 const Table = styled.table`
   width: 100%;
   height: 100%;
@@ -236,8 +211,8 @@ const TableHeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%; /* 부모 요소의 너비를 꽉 채움 */
-  margin-top: 1em; /* 상단 간격 조정 */
+  width: 100%;
+  margin-top: 1em;
 `;
 
 const TableHeader1 = styled.div`
@@ -248,29 +223,7 @@ const TableHeader1 = styled.div`
   font-size: 1.3em;
   text-align: center;
   border-radius: 0.9615em;
-  width: 35%;
-`;
-
-const TableHeader2 = styled.div`
-  padding: 0.6em;
-  background-color: rgba(56, 50, 50, 0.7);
-  color: #fff;
-  font-family: 'Pretendard-Medium';
-  font-size: 1.3em;
-  text-align: center;
-  border-radius: 0.9615em;
-  width: 50%;
-`;
-
-const TableHeader3 = styled.div`
-  padding: 0.6em;
-  background-color: rgba(56, 50, 50, 0.7);
-  color: #fff;
-  font-family: 'Pretendard-Medium';
-  font-size: 1.3em;
-  text-align: center;
-  border-radius: 0.9615em;
-  width: 15%;
+  width: 100%;
 `;
 
 const TableData = styled.td`

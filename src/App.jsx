@@ -6,7 +6,8 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import MypagePage from './pages/MypagePage';
 import MenuCategoryPage from './pages/MenuCategoryPage';
-import LevelInfoPage from './pages/LevelInfoPage';
+import RestaurantPage from './pages/RestaurantPage';
+import RestaurantInfoPage from './pages/RestaurantInfoPage';
 
 function App() {
   return (
@@ -23,12 +24,14 @@ function App() {
         {/* 회원가입 페이지 */}
         <Route path="/signup" element={<SignUpPage/>} />
 
-        {/* 숙련도 페이지 */}
-        <Route path="/menuCategory" element={<MenuCategoryPage/>} />
-        <Route path='/levelInfo' element={<LevelInfoPage/>} />
-
         {/* 마이 페이지 */}
         <Route path="/mypage" element={<MypagePage/>} />
+
+        {/* 메뉴 추천 페이지 */}
+        <Route path="/menuCategory" element={<MenuCategoryPage/>} />
+        <Route path='/restaurants' element={<RestaurantPage/>} />
+        <Route path='/menus' element={<RestaurantInfoPage/>} />
+
 
       </Route>
     </Routes>
