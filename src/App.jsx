@@ -3,11 +3,10 @@ import { Routes, Route } from "react-router-dom";
 import MainLayOut from './layout/MainLayOut';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
+import SignUpPage from './pages/SignUpPage';
+import MypagePage from './pages/MypagePage';
 import MenuCategoryPage from './pages/MenuCategoryPage';
 import LevelInfoPage from './pages/LevelInfoPage';
-import BoardPage from './pages/BoardPage';
-import BoardMorePage from './pages/BoardMorePage';
-import BoardWritePage from './pages/BoardWritePage';
 
 function App() {
   return (
@@ -22,19 +21,14 @@ function App() {
         <Route path="/login" element={<LoginPage/>} />
 
         {/* 회원가입 페이지 */}
-        <Route path="/signup" element={<LoginPage/>} />
+        <Route path="/signup" element={<SignUpPage/>} />
 
         {/* 숙련도 페이지 */}
         <Route path="/menuCategory" element={<MenuCategoryPage/>} />
         <Route path='/levelInfo' element={<LevelInfoPage/>} />
 
-        {/* 게시판 페이지 */}
-        <Route path="/board" element={<BoardPage/>} />
-        <Route path="/boardmore" element={<BoardMorePage />} />
-        <Route path="/boardwrite" element={<BoardWritePage/>} />
-
         {/* 마이 페이지 */}
-        <Route path="/mypage" element={<MainPage/>} />
+        <Route path="/mypage" element={<MypagePage/>} />
 
       </Route>
     </Routes>

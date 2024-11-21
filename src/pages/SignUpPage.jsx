@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import BackgroundImg from "../assets/images/loginPage/background2.png";
 
-function LoginPage() {
+function SignUpPage() {
     // navigate
     const navigate = useNavigate();
 
@@ -26,16 +26,29 @@ function LoginPage() {
                             <StyledInput/>
                         </InputWrapper>
                         {/* 비밀번호 */}
-                        <InputWrapper>
+                        <InputWrapper>  
                             <InputText>
                                 비밀번호
                             </InputText>
                             <StyledInput type="password"/>
                         </InputWrapper>
+                        {/* 이름(닉네임) */}
+                        <InputWrapper>
+                            <InputText>
+                                이름(닉네임)
+                            </InputText>
+                            <StyledInput/>
+                        </InputWrapper>
+                        {/* 주소 */}
+                        <InputWrapper>
+                            <InputText>
+                                내 위치<br />(복정동, 태평동을 포함한 지번주소)
+                            </InputText>
+                            <StyledInput/>
+                        </InputWrapper>
                     </UpWrapper>
                     <DownWrapper>
-                        <LoginButton onClick={() => navigate("/")}>로그인</LoginButton>
-                        <SignupButton onClick={() => navigate("/signup")}>회원가입 하기</SignupButton>
+                        <SignUpButton onClick={() => navigate("/login")}>회원가입</SignUpButton>
                     </DownWrapper>
                 </RightWrapper>
             </ContentWrapper>
@@ -43,7 +56,7 @@ function LoginPage() {
     )
 }
 
-export default LoginPage;
+export default SignUpPage;
 
 // CSS
 const PageWrapper = styled.div`
@@ -79,6 +92,7 @@ const RightWrapper = styled.div`
     box-sizing: border-box;
     margin: 3.45em;
     border-radius: 0.7em;
+    height: 85%;
     width: 35%;
     display: flex;
     flex-direction: column;
@@ -87,17 +101,16 @@ const RightWrapper = styled.div`
 `;
 
 const UpWrapper = styled.div`
-    margin-top: 1.5em;
     
 `;
 
 const InputWrapper = styled.div`
-    margin-top: 0.7em;
     
 `;
 
 const InputText = styled.div`
-    margin-left: 0.5em;
+    margin-top: 0.5em;
+    margin-left: 0.3em;
     color: #FBE8E9;
     font-family: 'Pretendard-Medium';
     font-size: 1em;
@@ -107,7 +120,7 @@ const InputText = styled.div`
 const StyledInput = styled.input`
     padding: 0 1em;
     box-sizing: border-box;
-    margin: 0.7em 0;
+    margin: 0.5em 0;
     border: none;
     border-radius: 0.6em;
     width: 100%;
@@ -121,7 +134,8 @@ const DownWrapper = styled.div`
     text-align: center;
 `;
 
-const LoginButton = styled.div`
+const SignUpButton = styled.div`
+    margin-top: 1.7em;
     border: none;
     border-radius: 0.5em;
     width: 100%;
@@ -133,27 +147,6 @@ const LoginButton = styled.div`
     font-family: 'Pretendard-Medium';
     font-size: 1em;
     font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    &:hover{
-        filter: brightness(80%);
-    }
-`;
-
-const SignupButton = styled.div`
-    margin-top: 2em;
-    margin-bottom: 1.2em;
-    border: none;
-    border-radius: 0.5em;
-    width: 100%;
-    height: 3em;
-    line-height: 3em;
-    text-align: center;
-    background-color: #727070;
-    color: white;
-    font-family: 'Pretendard-regular';
-    font-size: 1em;
-    font-weight: 400;
     cursor: pointer;
     transition: all 0.3s ease;
     &:hover{
