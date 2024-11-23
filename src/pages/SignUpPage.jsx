@@ -28,7 +28,7 @@ function SignUpPage() {
                         {/* 비밀번호 */}
                         <InputWrapper>  
                             <InputText>
-                                비밀번호
+                                비밀번호 (영어 대소문자와 숫자로 구성)
                             </InputText>
                             <StyledInput type="password"/>
                         </InputWrapper>
@@ -42,7 +42,7 @@ function SignUpPage() {
                         {/* 주소 */}
                         <InputWrapper>
                             <InputText>
-                                내 위치<br />(복정동, 태평동을 포함한 지번주소)
+                                내 위치 (복정동/태평동 + 지번)<br />예) 복정동 495
                             </InputText>
                             <StyledInput/>
                         </InputWrapper>
