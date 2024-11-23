@@ -1,20 +1,35 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import HappyEmotion from '../assets/images/recommendMenuPage/happy.png'
 import SadEmotion from '../assets/images/recommendMenuPage/sad.png'
 import AngryEmotion from '../assets/images/recommendMenuPage/angry.png'
 import NervousEmotion from '../assets/images/recommendMenuPage/nervous.png'
 import RecommendMenuResultPage from './RecommendMenuResultPage';
+import { getRecommendedMenuAPI } from '../apis/restaurant/getRecommendedMenuAPI';
 
-function RecommendMenuPage() {
-    // navigate
+export default function RecommendMenuPage() {
     const navigate = useNavigate();
+    
+    const [showModal, setShowModal] = useState(false);
+    const location = useLocation();
+    const { restaurantIdx } = location.state || {};
 
-    const [showModal, setShowModal] = useState(false); // 모달 상태 관리
+    const handleEmotion = async (emotion) => {
+        const recommendedData = await fetchRecommendedMenu(emotion);
+        setShowModal(true);
+        // navigate('/recommendMenuResult', { state: recommendedData });
+    };
 
-    const handleEmotionInfo = (emotionInfo) => {
-      navigate('/recommendMenuResult', {state: emotionInfo});
+    // 추천 메뉴 불러오기
+    const fetchRecommendedMenu = async (emotion) => {
+        try {
+            const response = await getRecommendedMenuAPI(restaurantIdx, emotion);
+            return response;  // 추천 메뉴 저장
+        } catch (error) {
+            console.error('추천 메뉴를 불러오는 중 오류 발생:', error);
+            throw error
+        }
     };
 
     return (
@@ -22,21 +37,20 @@ function RecommendMenuPage() {
             <TitleBoxWrapper>
                 <TitleText>지금 어떤 기분인가요?</TitleText>
             </TitleBoxWrapper>
-          {/* todo */}
             <MenuBoxWrapper>
-              <MenuBox onClick={() => setShowModal(true)}>
+              <MenuBox onClick={() => handleEmotion('HAPPY')}>
                   <MenuIcon src={HappyEmotion} />
                   <MenuText>기쁨</MenuText>
               </MenuBox>
-              <MenuBox onClick={() => setShowModal(true)}>
+              <MenuBox onClick={() => handleEmotion('SAD')}>
                   <MenuIcon src={SadEmotion} />
                   <MenuText>슬픔</MenuText>
               </MenuBox>
-              <MenuBox onClick={() => setShowModal(true)}>
+              <MenuBox onClick={() => handleEmotion('ANGRY')}>
                   <MenuIcon src={AngryEmotion} />
                   <MenuText>화남</MenuText>
               </MenuBox>
-              <MenuBox onClick={() => setShowModal(true)}>
+              <MenuBox onClick={() => handleEmotion('NERVOUS')}>
                   <MenuIcon src={NervousEmotion} />
                   <MenuText>긴장</MenuText>
               </MenuBox>
@@ -54,8 +68,6 @@ function RecommendMenuPage() {
         </Wrapper>
     )
 }
-
-export default RecommendMenuPage;
 
 const Wrapper = styled.div`
     width: 100%;

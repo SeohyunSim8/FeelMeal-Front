@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
-function RecommendMenuPage() {
+export default function RecommendMenuResultPage() {
+    const location = useLocation();
+    const recommendedMenu = location.state;
+
     return (
         <Wrapper>
             <ContentBoxWrapper>
-                <ContentText>불닭짜장면덮밥 곱배기을(를) 추천합니다</ContentText>
+                <ContentText>{recommendedMenu.name}을(를) 추천합니다</ContentText>
             </ContentBoxWrapper>
         </Wrapper>
     )
 }
-
-export default RecommendMenuPage;
 
 const Wrapper = styled.div`
     width: 100%;

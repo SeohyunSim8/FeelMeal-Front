@@ -6,7 +6,7 @@ import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import MypagePage from './pages/MypagePage';
 import MenuCategoryPage from './pages/MenuCategoryPage';
-import RestaurantPage from './pages/RestaurantPage';
+import RestaurantListPage from './pages/RestaurantListPage';
 import RestaurantInfoPage from './pages/RestaurantInfoPage';
 import RecommendMenuPage from './pages/RecommendMenuPage';
 import RecommendMenuResultPage from './pages/RecommendMenuResultPage';
@@ -31,7 +31,7 @@ function App() {
 
         {/* 메뉴 추천 페이지 */}
         <Route path="/menuCategory" element={<MenuCategoryPage/>} />
-        <Route path='/restaurants' element={<RestaurantPage/>} />
+        <Route path='/restaurants' element={<RestaurantListPage/>} />
         <Route path='/menus' element={<RestaurantInfoPage/>} />
         <Route path='/recommendMenu' element={<RecommendMenuPage/>} />
         <Route path='/recommendMenuResult' element={<RecommendMenuResultPage/>} />

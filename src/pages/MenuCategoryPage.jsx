@@ -13,7 +13,6 @@ import Table from '../assets/images/menuCategoryPage/table.png';
 export default function MenuCategoryPage() {
   const navigate = useNavigate();
 
-  //Todo
   const handleMenuCategory = (foodCategory) => {
     console.log('받은 음식 종류 데이터:', foodCategory);
     navigate('/restaurants', {state: foodCategory});

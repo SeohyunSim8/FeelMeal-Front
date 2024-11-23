@@ -1,40 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useLocation,useNavigate } from 'react-router-dom';
-import { getProficiencyListAPI } from '../apis/theme/getProficiencyListAPI'; // api 파일
+import { useLocation, useNavigate } from 'react-router-dom';
 import RecommendMenuPage from './RecommendMenuPage';
+// api 파일
+import { getRestaurantInfoAPI } from '../apis/restaurant/getRestaurantInfoAPI'; 
+import { getRestaurantMenuAPI } from '../apis/restaurant/getRestaurantMenuAPI'; 
 
 export default function RestaurantInfoPage() {
-//todo
-  // state 관리
-  const [profName, setProfName] = useState([]);
-  const [profDescription, setProfDescription] = useState([]);
-  const [cafeLists, setCafeLists] = useState([]);
-  const [page,] = useState('1');
-
-  const [showModal, setShowModal] = useState(false); // 모달 상태 관리
-
-  // useLocation
-  const location = useLocation();
-  const {level} = location.state || {};
-  
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchStudies = async () => {
-        try {
-            const response = await getProficiencyListAPI(level, page);
-            console.log('받은 데이터:', response);
-            setProfName(response.profName);  // 레벨
-            setProfDescription(response.profDescription);  // 설명
-            setCafeLists(response.contents);  // 리스트
-        } catch (error) {
-            console.error('카페 목록 데이터를 불러오는 중 오류 발생:', error);
-        }
-    };
-    fetchStudies();
-  }, [level, page]);
+  // state 관리
+  const [showModal, setShowModal] = useState(false);
+  const [restaurantInfo, setRestaurantInfo] = useState({});  // 식당 정보
+  const [restaurantMenu, setRestaurantMenu] = useState([]);  // 식당 메뉴 목록
+  const location = useLocation();
+  const { restaurantIdx } = location.state || {};
 
+  // 식당 정보 불러오기
+  useEffect(() => {
+    const fetchRestaurantsInfo = async () => {
+      try {
+        const response = await getRestaurantInfoAPI(restaurantIdx);
+        console.log('받은 데이터:', response);
+        setRestaurantInfo(response);  // 식당 정보 저장
+      } catch (error) {
+        console.error('식당 데이터를 불러오는 중 오류 발생:', error);
+      }
+    };
+    fetchRestaurantsInfo();
+  }, [restaurantIdx]);
+  
+  // 식당 메뉴 불러오기
+  useEffect(() => {
+    const fetchRestaurantsMenu = async () => {
+      try {
+        const response = await getRestaurantMenuAPI(restaurantIdx);
+        console.log('받은 데이터:', response);
+        setRestaurantMenu(response);  // 식당 메뉴 저장
+      } catch (error) {
+        console.error('식당 데이터를 불러오는 중 오류 발생:', error);
+      }
+    };
+    fetchRestaurantsMenu();
+  }, [restaurantIdx]);
+
+  // 메뉴 추천받기
+  const handleRecommendClick = () => {
+    setShowModal(true);
+    // navigate('/recommendMenu', { state: { restaurantIdx } });
+  };
 
   return (
     <Wrapper>
@@ -42,22 +56,21 @@ export default function RestaurantInfoPage() {
         {/* 식당 정보 */}
         <InfoWrapper>
             <Info>
-              {/* todo */}
-                <InfoContent>
-                    <InfoText>내 위치내 위치내 위치</InfoText>
-                </InfoContent>
-                <InfoContent>
-                    <InfoText>내 위치내 위치내 위치</InfoText>
-                </InfoContent>
-                <InfoContent>
-                    <InfoText>내 위치</InfoText>
-                </InfoContent>
+              <InfoContent>
+                  <InfoText>{restaurantInfo.name}</InfoText>
+              </InfoContent>
+              <InfoContent>
+                  <InfoText>{restaurantInfo.address}</InfoText>
+              </InfoContent>
+              <InfoContent>
+                  <InfoText>{restaurantInfo.about}</InfoText>
+              </InfoContent>
             </Info>
         </InfoWrapper>
         {/* 메뉴 */}
         <MenuListWrapper>
           <MenuList>
-            <RecommendButton onClick={() => setShowModal(true)}>
+            <RecommendButton onClick={() => handleRecommendClick()}>
               지금 감정에 먹기 좋은 메뉴 추천받기
             </RecommendButton>
             <TableHeaderWrapper>
@@ -65,13 +78,9 @@ export default function RestaurantInfoPage() {
             </TableHeaderWrapper>
             <Table>
               <tbody>
-                {/* todo */}
-                {cafeLists.map((cafe) => (
-                  <TableRow key={cafe.themeId}>
-                    <TableData>{cafe.cityName}</TableData>
-                    <TableData>{cafe.townName}</TableData>
-                    <TableData>{cafe.pointName}</TableData>
-                    <TableData>{cafe.themeName}</TableData>
+                {restaurantMenu.map((menuItem) => (
+                  <TableRow key={menuItem.name}>
+                    <TableData>{menuItem.name}</TableData>
                   </TableRow>
                 ))}
               </tbody>
@@ -219,7 +228,6 @@ const Table = styled.table`
   width: 100%;
   height: 100%;
   border-collapse: collapse;
-  margin-top: 3em;
 `;
 
 const TableRow = styled.tr``;

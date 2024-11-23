@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 // api 파일
 import { getRestaurantListAPI } from '../apis/restaurant/getRestaurantListAPI'; 
 import { postRestaurantLikeAPI } from '../apis/restaurant/postRestaurantLikeAPI';
 
-export default function RestaurantPage() {
+export default function RestaurantListPage() {
+  const navigate = useNavigate();
+
   // state 관리
   const [restaurantList, setRestaurantList] = useState([]);
   const location = useLocation();
@@ -14,7 +16,7 @@ export default function RestaurantPage() {
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
 
-  // 식당 정보 불러오기
+  // 식당 목록 불러오기
   useEffect(() => {
     const fetchRestaurantsList = async () => {
       try {
@@ -47,35 +49,11 @@ export default function RestaurantPage() {
     }
   };
   
-  // // state 관리
-  // const [profName, setProfName] = useState([]);
-  // const [profDescription, setProfDescription] = useState([]);
-  // const [cafeLists, setCafeLists] = useState([]);
-  // const [page,] = useState('1');
-
-  // // useLocation
-  // const location = useLocation();
-  // const {level} = location.state || {};
-
-  // // 임시 
-  // // const page = '1';
-
-  // 방탈출 정보 불러오기
-  // useEffect(() => {
-  //   const fetchStudies = async () => {
-  //       try {
-  //           const response = await getProficiencyListAPI(level, page);
-  //           console.log('받은 데이터:', response);
-  //           setProfName(response.profName);  // 레벨
-  //           setProfDescription(response.profDescription);  // 설명
-  //           setCafeLists(response.contents);  // 리스트
-  //       } catch (error) {
-  //           console.error('카페 목록 데이터를 불러오는 중 오류 발생:', error);
-  //       }
-  //   };
-  //   fetchStudies();
-  // }, [level, page]);
-
+  // 식당 메뉴 보기
+  const handleMenuClick = (restaurantIdx) => {
+    console.log('받은 음식 종류 데이터:', restaurantIdx);
+    navigate('/menus', {state: restaurantIdx});
+  };
 
   return (
     <Wrapper>
@@ -102,7 +80,7 @@ export default function RestaurantPage() {
                       </Button>
                     </TableData>
                     <TableData>
-                      <Button>
+                      <Button onClick={() => handleMenuClick({ restaurantIdx: restaurant.restaurantIdx })}>
                         메뉴 보기
                       </Button>
                     </TableData>
@@ -299,8 +277,8 @@ const ModalContent = styled.div`
   position: relative;
   z-index: 1000;
   display: flex;
-  justify-content: center;  /* 가로 중앙 정렬 */
-  align-items: center;      /* 세로 중앙 정렬 */
+  justify-content: center;
+  align-items: center;
 `;
 
 const ModalCloseButton = styled.div`
