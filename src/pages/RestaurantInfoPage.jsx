@@ -44,12 +44,6 @@ export default function RestaurantInfoPage() {
     fetchRestaurantsMenu();
   }, [restaurantIdx]);
 
-  // // 메뉴 추천받기
-  // const handleRecommendClick = () => {
-  //   setShowModal(true);
-  //   // navigate('/recommendMenu', { state: { restaurantIdx } });
-  // };
-
   return (
     <Wrapper>
       <Container>

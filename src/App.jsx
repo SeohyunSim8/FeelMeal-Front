@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 import MainLayOut from './layout/MainLayOut';
-import MainPage from './pages/MainPage';
+import HomePage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
 import MypagePage from './pages/MypagePage';
@@ -18,7 +18,7 @@ function App() {
       <Route element={<MainLayOut/>}>
         
         {/* 메인 페이지 */}
-        <Route path="/" element={<MainPage/>} />
+        <Route path="/home" element={<HomePage/>} />
         
         {/* 로그인 페이지 */}
         <Route path="/login" element={<LoginPage/>} />

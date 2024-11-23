@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import MenuRecommendMenu from '../assets/images/mainPage/menuRecommend.png'
 import MyPageMenu from '../assets/images/mainPage/myPage.png'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 function MainPage() {
     // navigate
     const navigate = useNavigate();
+
+    const location = useLocation();
+    const { memberIdx } = location.state || {}; // 전달받은 데이터
 
     return (
         <Wrapper>
@@ -14,11 +17,11 @@ function MainPage() {
                 <TitleText>가천대생을 위한 감정 기반 메뉴 추천 시스템<br />FeelMeal에 어서 오세요</TitleText>
             </TitleBoxWrapper>
             <MenuBoxWrapper>
-                <MenuBox onClick={() => navigate("/menuCategory")}>
+                <MenuBox onClick={() => navigate("/menuCategory", { state: { memberIdx } })}>
                     <MenuIcon src={MenuRecommendMenu} />
                     <MenuText>메뉴 추천</MenuText>
                 </MenuBox>
-                <MenuBox onClick={() => navigate("/myPage")}>
+                <MenuBox onClick={() => navigate("/myPage", { state: { memberIdx } })}>
                     <MenuIcon src={MyPageMenu} />
                     <MenuText>마이페이지</MenuText>
                 </MenuBox>

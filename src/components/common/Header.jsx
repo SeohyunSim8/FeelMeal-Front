@@ -46,9 +46,9 @@ function Header() {
     return (
         <>
         <HeaderWrapper>
-            <StyledLogoImage src={LogoImage} alt="Logo" onClick={() => handleNavigation("/")}/>
+            <StyledLogoImage src={LogoImage} alt="Logo" onClick={() => handleNavigation("/home")}/>
             <ButtonWrapper>
-                <StyledButton onClick={() => handleNavigation("/")}>홈</StyledButton>
+                <StyledButton onClick={() => handleNavigation("/home")}>홈</StyledButton>
                 <StyledButton onClick={() => handleNavigation("/menuCategory")}>메뉴 추천</StyledButton>
                 <StyledButton onClick={() => handleNavigation("/mypage")}>마이페이지</StyledButton>
             </ButtonWrapper>

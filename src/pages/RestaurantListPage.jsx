@@ -11,8 +11,7 @@ export default function RestaurantListPage() {
   // state 관리
   const [restaurantList, setRestaurantList] = useState([]);
   const location = useLocation();
-  const { category: foodCategory } = location.state || {};
-  const memberIdx = 1;
+  const { foodCategory, memberIdx } = location.state || {};
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
 
@@ -20,7 +19,7 @@ export default function RestaurantListPage() {
   useEffect(() => {
     const fetchRestaurantsList = async () => {
       try {
-        const response = await getRestaurantListAPI(memberIdx, foodCategory);
+        const response = await getRestaurantListAPI(memberIdx, foodCategory.category);
         console.log('받은 데이터:', response);
         setRestaurantList(response);  // 식당 목록 저장
       } catch (error) {

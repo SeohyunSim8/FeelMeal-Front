@@ -14,8 +14,9 @@ export default function MypagePage() {
   const [address, setAddress] = useState('');
 
   // useLocation
-  const memberIdx = 1;
-  
+  const location = useLocation();
+  const { memberIdx } = location.state || {}; // 전달받은 데이터
+
   // 좋아요 한 식당 목록 불러오기
   useEffect(() => {
     const fetchRestaurantsLikedList = async () => {

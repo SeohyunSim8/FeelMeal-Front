@@ -2,10 +2,37 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import BackgroundImg from "../assets/images/loginPage/background.png";
+import { postSignupAPI } from '../apis/member/postSignupAPI'; 
 
 function SignUpPage() {
-    // navigate
     const navigate = useNavigate();
+    // state 관리
+    const [showModal, setShowModal] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
+    const [id, setId] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [address, setAddress] = useState('');
+
+    // 회원가입
+    const handleSignUpButtonClick = async (id, password, name, address) => {
+        try {
+        const response = await postSignupAPI(id, password, name, address);
+
+        if (response.status === 200) {
+            setModalMessage('회원가입이 완료되었습니다.');
+        }
+        navigate("/login");
+        } catch (error) {
+            if (error.message === '이미 가입된 유저입니다.') {
+                setModalMessage('이미 가입된 유저입니다.');
+            } else {
+                setModalMessage('요청 중 오류가 발생했습니다.');
+            }
+        } finally {
+            setShowModal(true); // 항상 모달을 표시
+        }
+    };
 
     return (
         <PageWrapper>
@@ -23,35 +50,55 @@ function SignUpPage() {
                             <InputText>
                                 아이디
                             </InputText>
-                            <StyledInput/>
+                            <StyledInput
+                                value={id} 
+                                onChange={(e) => setId(e.target.value)} />
                         </InputWrapper>
                         {/* 비밀번호 */}
                         <InputWrapper>  
                             <InputText>
                                 비밀번호 (영어 대소문자와 숫자로 구성)
                             </InputText>
-                            <StyledInput type="password"/>
+                            <StyledInput type="password"
+                                value={password} 
+                                onChange={(e) => setPassword(e.target.value)} />
                         </InputWrapper>
                         {/* 이름(닉네임) */}
                         <InputWrapper>
                             <InputText>
                                 이름(닉네임)
                             </InputText>
-                            <StyledInput/>
+                            <StyledInput
+                                value={name} 
+                                onChange={(e) => setName(e.target.value)} />
                         </InputWrapper>
                         {/* 주소 */}
                         <InputWrapper>
                             <InputText>
                                 내 위치 (복정동/태평동 + 지번)<br />예) 복정동 495
                             </InputText>
-                            <StyledInput/>
+                            <StyledInput
+                                value={address} 
+                                onChange={(e) => setAddress(e.target.value)} />
                         </InputWrapper>
                     </UpWrapper>
                     <DownWrapper>
-                        <SignUpButton onClick={() => navigate("/login")}>회원가입</SignUpButton>
+                        <SignUpButton onClick={() => handleSignUpButtonClick(id, password, name, address)}>
+                            회원가입
+                        </SignUpButton>
                     </DownWrapper>
                 </RightWrapper>
             </ContentWrapper>
+            
+            {/* 모달 */}
+            {showModal && (
+                <ModalBackground onClick={() => setShowModal(false)}> {/* 모달 닫기 */}
+                <ModalContent onClick={(e) => e.stopPropagation()}> {/* 클릭 이벤트 전파 방지 */}
+                    <ModalCloseButton onClick={() => setShowModal(false)}>×</ModalCloseButton>
+                    <ModalText>{modalMessage}</ModalText>
+                </ModalContent>
+                </ModalBackground>
+            )}
         </PageWrapper>
     )
 }
@@ -152,4 +199,54 @@ const SignUpButton = styled.div`
     &:hover{
         filter: brightness(80%);
     }
+`;
+
+const ModalBackground = styled.div`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 5em;
+  z-index: 999;
+`;
+
+const ModalContent = styled.div`
+  background: #212121;
+  margin-top: 10em;
+  width: 40em;
+  max-height: 80vh;
+  height: 25%;
+  border-radius: 1em;
+  overflow: hidden;
+  position: relative;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalCloseButton = styled.div`
+  position: absolute;
+  top: 0.5em;
+  right: 1em;
+  font-size: 3em;
+  font-family: 'esamanru-Bold';
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+const ModalText = styled.td`    
+  color: #fff;
+  font-family: 'Pretendard-Medium';
+  font-size: 1.5em;
+  text-align: center;
+  width: auto;             /* 필요한 너비만큼 */
+  height: auto;            /* 필요한 높이만큼 */
 `;
