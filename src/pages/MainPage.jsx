@@ -11,6 +11,17 @@ function MainPage() {
     const location = useLocation();
     const { memberIdx } = location.state || {}; // 전달받은 데이터
 
+    const isLoggedIn = () => {
+        const session = sessionStorage.getItem('userSession');
+        return session ? true : false;
+    };
+      
+    useEffect(() => {
+      if (!isLoggedIn()) {
+        navigate("/login");
+      }
+    }, []);      
+
     return (
         <Wrapper>
             <TitleBoxWrapper>

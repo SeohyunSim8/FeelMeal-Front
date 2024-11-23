@@ -16,11 +16,13 @@ function LoginPage() {
     const handleLoginButtonClick = async (id, password) => {
         try {
             const response = await postLoginAPI(id, password);
-            if (response.status === 200) {
-                setModalMessage('로그인이 완료되었습니다.');
-            }
-            navigate("/home", { state: { memberIdx: response.data.memberIdx } });
             
+            if (response.status === 200) {
+                // 세션 저장
+                sessionStorage.setItem('userSession', JSON.stringify(response.data));
+                // 홈으로 이동
+                navigate("/home", { state: { memberIdx: response.data.memberIdx } });
+            }
         } catch (error) {
             if (error.message === '비밀번호가 일치하지 않습니다.') {
                 setModalMessage('비밀번호가 일치하지 않습니다.');
