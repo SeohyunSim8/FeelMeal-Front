@@ -8,21 +8,21 @@ import NervousEmotion from '../assets/images/recommendMenuPage/nervous.png'
 import RecommendMenuResultPage from './RecommendMenuResultPage';
 import { getRecommendedMenuAPI } from '../apis/restaurant/getRecommendedMenuAPI';
 
-export default function RecommendMenuPage() {
+export default function RecommendMenuPage({ restaurantIdx, closeModal }) {
     const navigate = useNavigate();
     
     const [showModal, setShowModal] = useState(false);
-    const location = useLocation();
-    const { restaurantIdx } = location.state || {};
+    const [recommendedMenu, setRecommendedMenu] = useState(null);
 
-    const handleEmotion = async (emotion) => {
-        const recommendedData = await fetchRecommendedMenu(emotion);
+    const handleEmotionClick = async (emotion) => {
+        const response = await fetchRecommendedMenu(restaurantIdx, emotion);
+        setRecommendedMenu(response);
         setShowModal(true);
         // navigate('/recommendMenuResult', { state: recommendedData });
     };
 
     // 추천 메뉴 불러오기
-    const fetchRecommendedMenu = async (emotion) => {
+    const fetchRecommendedMenu = async (restaurantIdx, emotion) => {
         try {
             const response = await getRecommendedMenuAPI(restaurantIdx, emotion);
             return response;  // 추천 메뉴 저장
@@ -37,31 +37,33 @@ export default function RecommendMenuPage() {
             <TitleBoxWrapper>
                 <TitleText>지금 어떤 기분인가요?</TitleText>
             </TitleBoxWrapper>
-            <MenuBoxWrapper>
-              <MenuBox onClick={() => handleEmotion('HAPPY')}>
+            <EmotionWrapper>
+              <EmotionButton onClick={() => handleEmotionClick('HAPPY')}>
                   <MenuIcon src={HappyEmotion} />
                   <MenuText>기쁨</MenuText>
-              </MenuBox>
-              <MenuBox onClick={() => handleEmotion('SAD')}>
+              </EmotionButton>
+              <EmotionButton onClick={() => handleEmotionClick('SAD')}>
                   <MenuIcon src={SadEmotion} />
                   <MenuText>슬픔</MenuText>
-              </MenuBox>
-              <MenuBox onClick={() => handleEmotion('ANGRY')}>
+              </EmotionButton>
+              <EmotionButton onClick={() => handleEmotionClick('ANGRY')}>
                   <MenuIcon src={AngryEmotion} />
                   <MenuText>화남</MenuText>
-              </MenuBox>
-              <MenuBox onClick={() => handleEmotion('NERVOUS')}>
+              </EmotionButton>
+              <EmotionButton onClick={() => handleEmotionClick('NERVOUS')}>
                   <MenuIcon src={NervousEmotion} />
                   <MenuText>긴장</MenuText>
-              </MenuBox>
-            </MenuBoxWrapper>
+              </EmotionButton>
+            </EmotionWrapper>
             
             {/* 모달 */}
             {showModal && (
                 <ModalBackground onClick={() => setShowModal(false)}> {/* 모달 닫기 */}
                 <ModalContent onClick={(e) => e.stopPropagation()}> {/* 클릭 이벤트 전파 방지 */}
                     <ModalCloseButton onClick={() => setShowModal(false)}>×</ModalCloseButton>
-                    <RecommendMenuResultPage /> {/* RecommendMenuPage 컴포넌트 */}
+                    <RecommendMenuResultPage
+                        recommendedMenu={recommendedMenu}
+                        closeModal={() => setShowModal(false)} />
                 </ModalContent>
                 </ModalBackground>
             )}
@@ -93,7 +95,7 @@ const TitleText = styled.div`
     margin-top: 1em;
 `;
 
-const MenuBoxWrapper = styled.div`
+const EmotionWrapper = styled.div`
     width: 100%;
     height: 60%;
     display: flex;
@@ -103,7 +105,7 @@ const MenuBoxWrapper = styled.div`
     margin-bottom: 1.5em;
 `;
 
-const MenuBox = styled.div`
+const EmotionButton = styled.div`
     width: 15em;
     height: 20em;
     background: linear-gradient(to bottom, #FFB0A5 30%, #251E1E 85%);

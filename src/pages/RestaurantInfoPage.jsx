@@ -44,11 +44,11 @@ export default function RestaurantInfoPage() {
     fetchRestaurantsMenu();
   }, [restaurantIdx]);
 
-  // 메뉴 추천받기
-  const handleRecommendClick = () => {
-    setShowModal(true);
-    // navigate('/recommendMenu', { state: { restaurantIdx } });
-  };
+  // // 메뉴 추천받기
+  // const handleRecommendClick = () => {
+  //   setShowModal(true);
+  //   // navigate('/recommendMenu', { state: { restaurantIdx } });
+  // };
 
   return (
     <Wrapper>
@@ -70,7 +70,7 @@ export default function RestaurantInfoPage() {
         {/* 메뉴 */}
         <MenuListWrapper>
           <MenuList>
-            <RecommendButton onClick={() => handleRecommendClick()}>
+            <RecommendButton onClick={() => setShowModal(true)}>
               지금 감정에 먹기 좋은 메뉴 추천받기
             </RecommendButton>
             <TableHeaderWrapper>
@@ -94,7 +94,9 @@ export default function RestaurantInfoPage() {
         <ModalBackground onClick={() => setShowModal(false)}> {/* 모달 닫기 */}
           <ModalContent onClick={(e) => e.stopPropagation()}> {/* 클릭 이벤트 전파 방지 */}
             <ModalCloseButton onClick={() => setShowModal(false)}>×</ModalCloseButton>
-            <RecommendMenuPage /> {/* RecommendMenuPage 컴포넌트 */}
+            <RecommendMenuPage
+              restaurantIdx={restaurantIdx}
+              closeModal={() => setShowModal(false)} />
           </ModalContent>
         </ModalBackground>
       )}

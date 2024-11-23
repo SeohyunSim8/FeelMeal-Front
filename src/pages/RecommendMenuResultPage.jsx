@@ -1,10 +1,8 @@
+import React from 'react';
 import styled from 'styled-components'
 import { useLocation } from 'react-router-dom'
 
-export default function RecommendMenuResultPage() {
-    const location = useLocation();
-    const recommendedMenu = location.state;
-
+export default function RecommendMenuResultPage({ recommendedMenu, closeModal }) {
     return (
         <Wrapper>
             <ContentBoxWrapper>
