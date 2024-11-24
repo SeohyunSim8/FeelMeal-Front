@@ -11,8 +11,8 @@ export default function RestaurantInfoPage() {
 
   // state 관리
   const [showModal, setShowModal] = useState(false);
-  const [restaurantInfo, setRestaurantInfo] = useState({});  // 식당 정보
-  const [restaurantMenu, setRestaurantMenu] = useState([]);  // 식당 메뉴 목록
+  const [restaurantInfo, setRestaurantInfo] = useState({});
+  const [restaurantMenu, setRestaurantMenu] = useState([]);
   const location = useLocation();
   const { restaurantIdx } = location.state || {};
 
@@ -85,8 +85,8 @@ export default function RestaurantInfoPage() {
 
       {/* 모달 */}
       {showModal && (
-        <ModalBackground onClick={() => setShowModal(false)}> {/* 모달 닫기 */}
-          <ModalContent onClick={(e) => e.stopPropagation()}> {/* 클릭 이벤트 전파 방지 */}
+        <ModalBackground onClick={() => setShowModal(false)}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
             <ModalCloseButton onClick={() => setShowModal(false)}>×</ModalCloseButton>
             <RecommendMenuPage
               restaurantIdx={restaurantIdx}
@@ -146,16 +146,6 @@ const Info = styled.div`
       border-radius: 30px;
       background-color: darkgray;
   }
-`;
-
-const InfoHeader = styled.div`
-    color: #fff;
-    font-family: 'Pretendard-Medium';
-    font-size: 1.3em;
-    text-align: center;
-    border-radius: 0.9615em;
-    width: auto;
-    margin-left: 1.5em;
 `;
 
 const InfoContent = styled.div`

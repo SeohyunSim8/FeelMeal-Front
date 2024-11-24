@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import { useLocation, useNavigate } from 'react-router-dom'
 import HappyEmotion from '../assets/images/recommendMenuPage/happy.png'
 import SadEmotion from '../assets/images/recommendMenuPage/sad.png'
 import AngryEmotion from '../assets/images/recommendMenuPage/angry.png'
@@ -8,9 +7,7 @@ import NervousEmotion from '../assets/images/recommendMenuPage/nervous.png'
 import RecommendMenuResultPage from './RecommendMenuResultPage';
 import { getRecommendedMenuAPI } from '../apis/restaurant/getRecommendedMenuAPI';
 
-export default function RecommendMenuPage({ restaurantIdx, closeModal }) {
-    const navigate = useNavigate();
-    
+export default function RecommendMenuPage({ restaurantIdx, closeModal }) {    
     const [showModal, setShowModal] = useState(false);
     const [recommendedMenu, setRecommendedMenu] = useState(null);
 
@@ -58,8 +55,8 @@ export default function RecommendMenuPage({ restaurantIdx, closeModal }) {
             
             {/* 모달 */}
             {showModal && (
-                <ModalBackground onClick={() => setShowModal(false)}> {/* 모달 닫기 */}
-                <ModalContent onClick={(e) => e.stopPropagation()}> {/* 클릭 이벤트 전파 방지 */}
+                <ModalBackground onClick={() => setShowModal(false)}>
+                <ModalContent onClick={(e) => e.stopPropagation()}>
                     <ModalCloseButton onClick={() => setShowModal(false)}>×</ModalCloseButton>
                     <RecommendMenuResultPage
                         recommendedMenu={recommendedMenu}
@@ -147,7 +144,7 @@ const ModalContent = styled.div`
   background: #212121;
   margin-top: 10%;
   width: 50%;
-  max-height: 80vh; /* 최대 높이를 화면의 80%로 제한 */
+  max-height: 80vh;
   height: 35%;
   border-radius: 1em;
   overflow: hidden;

@@ -93,8 +93,8 @@ export default function RestaurantListPage() {
 
       {/* 모달 */}
       {showModal && (
-          <ModalBackground onClick={() => setShowModal(false)}> {/* 모달 닫기 */}
-          <ModalContent onClick={(e) => e.stopPropagation()}> {/* 클릭 이벤트 전파 방지 */}
+          <ModalBackground onClick={() => setShowModal(false)}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
               <ModalCloseButton onClick={() => setShowModal(false)}>×</ModalCloseButton>
               <ModalText>{modalMessage}</ModalText>
           </ModalContent>
@@ -299,6 +299,6 @@ const ModalText = styled.td`
   font-family: 'Pretendard-Medium';
   font-size: 1.5em;
   text-align: center;
-  width: auto;             /* 필요한 너비만큼 */
-  height: auto;            /* 필요한 높이만큼 */
+  width: auto;
+  height: auto;
 `;

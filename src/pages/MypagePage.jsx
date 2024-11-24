@@ -12,10 +12,8 @@ export default function MypagePage() {
   const [modalMessage, setModalMessage] = useState('');
   const [restaurantLikedList, setRestaurantLikedList] = useState([]);
   const [address, setAddress] = useState('');
-
-  // useLocation
   const location = useLocation();
-  const { memberIdx } = location.state || {}; // 전달받은 데이터
+  const { memberIdx } = location.state || {};
 
   // 좋아요 한 식당 목록 불러오기
   useEffect(() => {
@@ -114,8 +112,8 @@ export default function MypagePage() {
 
       {/* 모달 */}
       {showModal && (
-          <ModalBackground onClick={() => setShowModal(false)}> {/* 모달 닫기 */}
-          <ModalContent onClick={(e) => e.stopPropagation()}> {/* 클릭 이벤트 전파 방지 */}
+          <ModalBackground onClick={() => setShowModal(false)}>
+          <ModalContent onClick={(e) => e.stopPropagation()}>
               <ModalCloseButton onClick={() => setShowModal(false)}>×</ModalCloseButton>
               <ModalText>{modalMessage}</ModalText>
           </ModalContent>
@@ -283,8 +281,8 @@ const TableHeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%; /* 부모 요소의 너비를 꽉 채움 */
-  margin-top: 1em; /* 상단 간격 조정 */
+  width: 100%;
+  margin-top: 1em;
 `;
 
 const TableHeader1 = styled.div`
@@ -377,8 +375,8 @@ const ModalText = styled.td`
   font-family: 'Pretendard-Medium';
   font-size: 1.5em;
   text-align: center;
-  width: auto;             /* 필요한 너비만큼 */
-  height: auto;            /* 필요한 높이만큼 */
+  width: auto;
+  height: auto;
 `;
 
 const Button = styled.div`

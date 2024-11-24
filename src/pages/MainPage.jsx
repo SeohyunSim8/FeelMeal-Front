@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import MenuRecommendMenu from '../assets/images/mainPage/menuRecommend.png'
 import MyPageMenu from '../assets/images/mainPage/myPage.png'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-function MainPage() {
-    // navigate
+export default function MainPage() {
     const navigate = useNavigate();
 
     const location = useLocation();
-    const { memberIdx } = location.state || {}; // 전달받은 데이터
+    const { memberIdx } = location.state || {};
 
     const isLoggedIn = () => {
         const session = sessionStorage.getItem('userSession');
@@ -40,8 +39,6 @@ function MainPage() {
         </Wrapper>
     )
 }
-
-export default MainPage;
 
 const Wrapper = styled.div`
     width: 100%;

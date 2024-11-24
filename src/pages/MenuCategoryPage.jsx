@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate, useLocation } from 'react-router-dom';
+// image
 import Korean from '../assets/images/menuCategoryPage/korean.png';
 import Japanese from '../assets/images/menuCategoryPage/japanese.png';
 import Chinese from '../assets/images/menuCategoryPage/chinese.png';
@@ -14,7 +15,7 @@ export default function MenuCategoryPage() {
   const navigate = useNavigate();
 
   const location = useLocation();
-  const { memberIdx } = location.state || {}; // 전달받은 데이터
+  const { memberIdx } = location.state || {};
 
   const handleMenuCategory = (foodCategory) => {
     console.log('받은 음식 종류 데이터:', foodCategory);
@@ -23,10 +24,6 @@ export default function MenuCategoryPage() {
 
   return (
     <PageWrapper>
-      {/* <OvalBackground/>
-      <HalfOval />
-      <HalfOval2 />
-      <BlurOverlay /> */}
       <ImgWrapper>
         <GroupImg src={Table} />
       

@@ -2,8 +2,6 @@ import { api } from "../API";
 
 export const deleteRestaurantLikeAPI = async (memberIdx, restaurantIdx) => {
     try {
-        console.log(memberIdx);
-        console.log(restaurantIdx);
         const response = await api.delete('http://172.20.0.4:8090/restaurants/like', {
             data: {
                 memberIdx,
